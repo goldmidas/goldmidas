@@ -1082,9 +1082,9 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-static const int64 nTargetSpacing = 10 * 60;
-static const int64 nInterval = nTargetTimespan / nTargetSpacing;
+static int64 nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
+static int64 nTargetSpacing = 10 * 60;
+static int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 //
 // minimum amount of work that could possibly be required nTime after
@@ -1118,6 +1118,14 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
     // Genesis block
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
+
+// From block 20000 reassess the difficulty every block
+if(pindexLast->nHeight >= 20000)
+{
+    nTargetTimespan = 50; // 50 second block time
+    nTargetSpacing = 50; // every 50 second block
+}
+    nInterval = nTargetTimespan / nTargetSpacing;
 
     // Only change once per interval
     if ((pindexLast->nHeight+1) % nInterval != 0)
