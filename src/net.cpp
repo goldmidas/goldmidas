@@ -1192,6 +1192,9 @@ void MapPort(bool)
 // The second name should resolve to a list of seed addresses.
 static const char *strMainNetDNSSeed[][2] = {
     {"bluematt.me", "coingen-seed-scrypt.bluematt.me"},
+    {"pool.privanon.com", "54.201.25.156"},
+    {"pool2.privanon.com", "91.235.254.37"},
+    {"hic.xns01.com", "54.187.63.50"},
     {NULL, NULL}
 };
 
