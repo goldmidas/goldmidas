@@ -1093,7 +1093,7 @@ static int64 nInterval = nTargetTimespan / nTargetSpacing;
 // minimum work required was nBase
 //
 unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
-
+{
     // Testnet has min-difficulty blocks
     // after nTargetSpacing*2 time between blocks:
     if (fTestNet && nTime > nTargetSpacing*2)
